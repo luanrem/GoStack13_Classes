@@ -34,6 +34,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "warn",
+    "no-unused-expressions": "off",
     "prettier/prettier": "error",
     "camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": [
