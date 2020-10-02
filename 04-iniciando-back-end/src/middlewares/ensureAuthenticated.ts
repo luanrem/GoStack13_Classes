@@ -1,40 +1,44 @@
-import {Request, Response, NextFunction} from 'express';
-import { verify } from 'jsonwebtoken'
+import { Request, Response, NextFunction } from 'express';
+import { verify } from 'jsonwebtoken';
 
-import AppError from '../errors/AppError'
-import authConfig from '../config/auth'
+import AppError from '../errors/AppError';
 
-interface TokenPayload{
-    iat: number;
-    exp: number;
-    sub: string;
+import authConfig from '../config/auth';
+
+interface TokenPayload {
+  iat: number;
+  exp: number;
+  sub: string;
 }
 
-export default function ensureAuthenticaded(
-    request: Request, 
-    response: Response, 
-    next: NextFunction
-    ): void{
-        const authHeader = request.headers.authorization;
+export default function ensureAuthenticated(
+  request: Request,
+  response: Response,
+  next: NextFunction,
+): void {
+  // Validacao do token JWT
 
-        if(!authHeader){
-            throw new AppError('JWT token is missing', 401);
-        }
+  const authHeader = request.headers.authorization;
 
-        const [, token] = authHeader.split(' ');
+  if (!authHeader) {
+    throw new AppError('JWT token is missing', 401);
+  }
 
-        try{
-            const decoded = verify(token, authConfig.jwt.secret);
-            
-            const { sub } = decoded as TokenPayload;
+  // Bearer dsjalk
 
-            request.user = {
-                id: sub,
-            }
+  const [, token] = authHeader.split(' ');
 
-            return next();
+  try {
+    const decoded = verify(token, authConfig.jwt.secret);
 
-        } catch (err){
-            throw new AppError('Invalid JWT token', 401)
-        }
+    const { sub } = decoded as TokenPayload; // Assim eu forco o tipo da variavel
+
+    request.user = {
+      id: sub,
+    };
+
+    return next();
+  } catch {
+    throw new AppError('Invalid JWT token', 401);
+  }
 }
