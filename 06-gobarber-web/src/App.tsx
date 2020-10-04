@@ -6,7 +6,7 @@ import GlobalStyle from './styles/global';
 
 // import { Container } from './styles';
 
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './hooks/AuthContext';
 
 const App: React.FC = () => (
   <>
