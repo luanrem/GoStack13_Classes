@@ -29,14 +29,25 @@
       "camelcase": "off",
       "no-unused-vars": ["error", { "argsIgnorePattern": "_" }],
       "no-useless-constructor": "off",
-      "@typescript-eslint/interface-name-prefix": ["error", {"prefixWithI": "always"}],
+      //"@typescript-eslint/interface-name-prefix": ["error", {"prefixWithI": "always"}],
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "interface",
+          "format": ["PascalCase"],
+          "custom": {
+            "regex": "^I[A-Z]",
+            "match": true
+          }
+        }
+      ],
       "import/extensions": [
         "error",
         "ignorePackages",
         {
           "ts": "never"
         }
-      ],
+      ]
     },
     "settings": {
       "import/resolver": {

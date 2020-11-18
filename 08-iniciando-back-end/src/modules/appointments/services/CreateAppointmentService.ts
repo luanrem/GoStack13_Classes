@@ -27,15 +27,12 @@ class CreateAppointmentService {
     // É como se estivesse colocando antes do constructor o seguinte codigo:
     // private appointmentsRepository: IAppointmentsRepository
     private appointmentsRepository: IAppointmentsRepository,
-  ) {
-
-  }
+  ) {}
 
   public async execute({
     date,
     provider_id,
   }: IRequestDTO): Promise<Appointment> {
-
     const appointmentDate = startOfHour(date);
 
     const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(
