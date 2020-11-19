@@ -1,9 +1,10 @@
 import { startOfHour } from 'date-fns';
+import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
 import Appointment from '../infra/typeorm/entities/Appointment';
-import IAppointmentsRepository from '../repositories/IAppointmentesRepository';
+import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 // import AppointmentsRepository from '../infra/typeorm/repositories/AppointmentsRepository';
 
 /**
@@ -20,12 +21,13 @@ interface IRequestDTO {
 /**
  * Dependency Inversion [SOLID]
  */
-
+@injectable()
 class CreateAppointmentService {
+  // Se eu coloco private a variável já é criada antes de ser puxada aqui
+  // É como se estivesse colocando antes do constructor o seguinte codigo:
+  // private appointmentsRepository: IAppointmentsRepository
   constructor(
-    // Se eu coloco private a variável já é criada antes de ser puxada aqui
-    // É como se estivesse colocando antes do constructor o seguinte codigo:
-    // private appointmentsRepository: IAppointmentsRepository
+    @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
   ) {}
 
