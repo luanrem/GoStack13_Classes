@@ -84,3 +84,11 @@ OBS: Cada regra de negócio deve estar associada a um item dos Requisitos não f
 - O usuário não pode agendar em um horário já ocupado;
 - O usuário não pode agendar em um horário que já passou;
 - O usuário não pode agendar serviços consigo mesmo;
+
+
+
+#### Mongo Docker Creation code
+docker run --name mongodb -p 27017:27017 -d -t mongo
+
+to enter on MongoDB write inside software:
+mongodb://localhost:27017
