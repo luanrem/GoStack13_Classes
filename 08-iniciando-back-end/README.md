@@ -92,3 +92,8 @@ docker run --name mongodb -p 27017:27017 -d -t mongo
 
 to enter on MongoDB write inside software:
 mongodb://localhost:27017
+
+#### Redis Docker Creation code
+docker run --name redis -p 6379:6379 -d -t redis:aplpine
+
+driver: ioredis
