@@ -3,7 +3,7 @@ build/
 .vscode/
 temp/
 .env
-coverage
+coverage/
 ormconfig.json
 
 tmp/*
